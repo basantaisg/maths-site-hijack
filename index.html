@@ -160,7 +160,7 @@
         <p>A centralized dashboard for U-ThinkCrazy NEB Resources</p>
         <br>
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search lectures (e.g. 'Calculus', 'Binomial', 'Feb-10')...">
+            <input type="text" id="searchInput" placeholder="Search lectures (e.g. 'Calculus', 'Binomial', 'Nov-27')...">
         </div>
     </header>
 
@@ -169,7 +169,19 @@
     <script>
         const data = [
             {
-                section: "1. Live Session (Rohan Sir)",
+                section: "🔥 Avatar Batch Recordings (Nov-Dec 2025)",
+                type: "youtube",
+                items: [
+                    { title: "Nov 27 | How To Get A+ in Math", url: "https://youtu.be/fZXUeoTFIfY" },
+                    { title: "Nov 28 | Revision of Derivative NEB 11 (1)", url: "https://youtu.be/kzpEDYZRTto" },
+                    { title: "Nov 30 | Revision of Derivative NEB 11 (2)", url: "https://youtu.be/aIymLrrojgk" },
+                    { title: "Dec 01 | Revision of Derivative NEB 11 (3)", url: "https://youtu.be/05EV2WomAro" },
+                    { title: "Dec 02 | Calculus", url: "https://youtu.be/-Won0QrQ4Hk" },
+                    { title: "Dec 03 | Calculus | Revision Class 11", url: "https://youtu.be/rIJCchgZkgc" }
+                ]
+            },
+            {
+                section: "1. Live Session (Rohan Sir) - Jan/Apr",
                 type: "youtube",
                 items: [
                     { title: "Jan-08 | Statics & Probability | Correlation & Regression 01", url: "https://youtu.be/P24d5F_eFdQ?si=-QWAQRF2Os1sa8rl" },
@@ -250,7 +262,7 @@
                 ]
             },
             {
-                section: "2. Live Session (Sankalpa Group)",
+                section: "3. Live Session (Sankalpa Group)",
                 type: "youtube",
                 items: [
                     { title: "Feb-10 | Vector Scales", url: "https://youtu.be/mzIxvQXYgnQ?si=rmQh_Z3aEnQXBhk0" },
@@ -317,14 +329,14 @@
                 ]
             },
             {
-                section: "3. Derivatives Revision (Class 11)",
+                section: "4. Derivatives Revision (Class 11)",
                 type: "youtube",
                 items: [
                     { title: "Derivatives NEB Class-11 REVISION", url: "https://youtu.be/Nv8MQwFI4h0?si=5F9ozG6hRs8qIOKd" }
                 ]
             },
             {
-                section: "4. Conic Section (Mr. Bikash Sir)",
+                section: "5. Conic Section (Mr. Bikash Sir)",
                 type: "youtube",
                 items: [
                     { title: "Conic Sections | Ellipse | Lec-01", url: "https://youtu.be/gZTMTTtCn5c?si=4e5BZATdIYEXkBDR" },
@@ -345,7 +357,7 @@
                 ]
             },
             {
-                section: "5. NG Class Recordings (Archive)",
+                section: "6. NG Class Recordings (Archive)",
                 type: "youtube",
                 items: [
                     { title: "Aug 05 | Statistics & Probability | Lec-01", url: "https://youtu.be/5aaJ7GsjiN4" },
@@ -392,16 +404,17 @@
                 ]
             },
             {
-                section: "6. Notes (Drive Links) 📜",
+                section: "7. Notes (Drive Links) 📜",
                 type: "drive",
                 items: [
                     { title: "Basic Math Notes (Folder)", url: "https://drive.google.com/drive/folders/1SLuFAoVzW7_t-7cR06LsrDn_YXuYSTBx?usp=sharing" },
                     { title: "Class 12 Solution Manual (PDF)", url: "https://drive.google.com/file/d/1QL_bJMNBfGS88mz8Q5MHS_UfQlJ7rsNq/view?usp=drive_link" },
-                    { title: "Math NG 2082 (Folder)", url: "https://drive.google.com/drive/folders/1Cy3IDnis7bGownGiZYU9MWrJYxbWyuCi?usp=drive_link" }
+                    { title: "Math NG 2082 (Folder)", url: "https://drive.google.com/drive/folders/1Cy3IDnis7bGownGiZYU9MWrJYxbWyuCi?usp=drive_link" },
+                    { title: "Avatar Batch - All Notes", url: "https://drive.google.com/drive/folders/1yalIRNhzZT9FDxYv3ajAWp94xVryOVVr?usp=sharing" }
                 ]
             },
             {
-                section: "7. Group Link 📲",
+                section: "8. Group Link 📲",
                 type: "whatsapp",
                 items: [
                     { title: "Join Whatsapp Group", url: "https://chat.whatsapp.com/ISQXMepQdHAA5xr9bqXk3v" }
@@ -424,20 +437,17 @@
             const lowerFilter = filter.toLowerCase();
 
             data.forEach(section => {
-                // Filter items based on search
                 const filteredItems = section.items.filter(item => 
                     item.title.toLowerCase().includes(lowerFilter) || 
                     section.section.toLowerCase().includes(lowerFilter)
                 );
 
                 if (filteredItems.length > 0) {
-                    // Create Section Header
                     const sectionTitle = document.createElement('h2');
                     sectionTitle.className = 'section-title';
                     sectionTitle.innerText = section.section;
                     app.appendChild(sectionTitle);
 
-                    // Create Grid
                     const grid = document.createElement('div');
                     grid.className = 'grid';
 
@@ -468,10 +478,8 @@
             }
         }
 
-        // Initial Render
         render();
 
-        // Search Listener
         searchInput.addEventListener('input', (e) => {
             render(e.target.value);
         });
