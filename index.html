@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Class 12 - Resource Hub</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent: #10b981; /* Green accent for Math */
+            --accent-hover: #059669;
+            --youtube: #ef4444;
+            --drive: #3b82f6;
+            --whatsapp: #22c55e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 2rem auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #34d399, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-container {
+            margin-bottom: 2rem;
+        }
+
+        #searchInput {
+            width: 100%;
+            max-width: 600px;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 2px solid var(--card-bg);
+            background-color: var(--card-bg);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #searchInput:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--card-bg);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background-color: #263346;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--accent);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--text-secondary);
+        }
+
+        .card.type-youtube::before { background-color: var(--youtube); }
+        .card.type-drive::before { background-color: var(--drive); }
+        .card.type-whatsapp::before { background-color: var(--whatsapp); }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Math Class 12 Resource Hub</h1>
+        <p>A centralized dashboard for U-ThinkCrazy NEB Resources</p>
+        <br>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search lectures (e.g. 'Calculus', 'Binomial', 'Feb-10')...">
+        </div>
+    </header>
+
+    <div id="app" class="main-container"></div>
+
+    <script>
+        const data = [
+            {
+                section: "1. Live Session (Rohan Sir)",
+                type: "youtube",
+                items: [
+                    { title: "Jan-08 | Statics & Probability | Correlation & Regression 01", url: "https://youtu.be/P24d5F_eFdQ?si=-QWAQRF2Os1sa8rl" },
+                    { title: "Jan-09 | Statics & Probability | Correlation & Regression 02", url: "https://youtu.be/7-wAs8fEQ5U?si=uDVewtXfs5mD1MVX" },
+                    { title: "Jan-09 | Correlation and Regression 03", url: "https://youtu.be/wi6hBufbSKs?si=JOR6-7IZ6V9V58Lf" },
+                    { title: "Jan-10 | Correlation and Regression 04", url: "https://youtu.be/ayOj5njerJk?si=Cg1e8Azrnm2XS29o" },
+                    { title: "Jan-13 | Correlation and Regression 05", url: "https://youtu.be/sLE3rA30Prg" },
+                    { title: "Jan-15 | Rank Correlation Coefficient", url: "https://youtu.be/Qvlj4DK5iMY?si=5EWAyQg2q0_V5_7D" },
+                    { title: "Jan-16 | Rank Correlation", url: "https://youtu.be/hhaetkQoF7g?si=eRj3idaYxiJJ4agT" },
+                    { title: "Jan-17 | Calculus | Derivative 01", url: "https://youtu.be/guLdeAd3Xdc?si=GoVyuOe7ik2i2YHF" },
+                    { title: "Jan-18 | Calculus | Derivative 02", url: "https://youtu.be/nWHD8lUftA0?si=z1v-D1eKzy7lklR6" },
+                    { title: "Jan-19 | Calculus | Derivative 03", url: "https://youtu.be/51PRrWGuL-8?si=SBI2dkRmvsODQ_hK" },
+                    { title: "Jan-19 | Calculus | Derivative 04", url: "https://youtu.be/C4R-l_MMHw0?si=qq8OYRbQshqME2Xn" },
+                    { title: "Jan-20 | Application of Derivative 01", url: "https://youtu.be/5KR4cUDl3PQ?si=F9daHM8giAQRCRlM" },
+                    { title: "Jan-20 | Application of Derivative 02", url: "https://youtu.be/gwlWZYm5WZM?si=RorPIKUor4du8nYD" },
+                    { title: "Jan-21 | Application of Derivative 02 (Part B)", url: "https://youtu.be/9BchiSyVqw8?si=T_6JcDJYS3iwFRzC" },
+                    { title: "Jan-22 | Application of Derivative 03", url: "https://youtu.be/zZ950mkbxwM?si=7qNvhj2AvxoYQ7wI" },
+                    { title: "Jan-22 | Application of Derivative 04", url: "https://youtu.be/-5HU-fH3hIM?si=h---A59MDZaG8Dtc" },
+                    { title: "Jan-23 | Rate Measurement", url: "https://youtu.be/qe4ptMA3gRo?si=a7uaHkREkW38pMq9" },
+                    { title: "Jan-24 | Application of Derivative", url: "https://youtu.be/ROX4bNunsZ0?si=9jJlyRKb_vCWxiyj" },
+                    { title: "Jan-26 | Application of Derivative (Part A)", url: "https://youtu.be/10A5R-gEeEo?si=vHd5WT-BPxCIH7nZ" },
+                    { title: "Jan-26 | Application of Derivative (Part B)", url: "https://youtu.be/4u8gG-MPBBk?si=BClVnxtdOlfBsG1a" },
+                    { title: "Jan-27 | Application of Derivative", url: "https://youtu.be/xI0wUGr4P4s?si=79kq5wb0tdn3NYXd" },
+                    { title: "Jan-28 | Application of Derivative", url: "https://youtu.be/DwUC5iqC4iw?si=WBNb1cj6a1q1gQhp" },
+                    { title: "Jan-30 | Integration / Anti-Derivative", url: "https://youtu.be/0Ll9AHgYfLA?si=7CubPr_hifLVUBBA" },
+                    { title: "Jan-31 | Integration / Anti-Derivative", url: "https://youtu.be/zHWe4UJI5qo?si=Ryj4ZR_QNPJN7HGC" },
+                    { title: "Feb-05 | Simplex Method 01", url: "https://youtu.be/1dRvB468fCY" },
+                    { title: "Feb-06 | Simplex Method | Linear Programming", url: "https://youtu.be/w7rDzhKrIhU?si=9ej2s4bNII0k9NzP" },
+                    { title: "Feb-07 | Vector Scalar Product", url: "https://youtu.be/U05SPig3Ugk?si=4xFgw1s3CEVrocV2" },
+                    { title: "Feb-09 | Calculus | Anti Derivative", url: "https://youtu.be/g_UjhFiO4KM?si=dvWjiZulLu0E0oM-" },
+                    { title: "Feb-10 | Antiderivatives", url: "https://youtu.be/g5x0ouIDzIg?si=twzKIs31O-_gDEq6" },
+                    { title: "Feb-11 | Antiderivatives", url: "https://youtu.be/kybxSDZsWtg?si=Lf9Qaf3oWW8SfVyb" },
+                    { title: "Feb-13 | Trigonometry", url: "https://youtu.be/P7kjR0jGRgs?si=CtxNJBw1OEiJc6-N" },
+                    { title: "Feb-14 | Trigonometry", url: "https://youtu.be/U8AvqY4_wT4?si=4IkpeOgAfipJpdMp" },
+                    { title: "Feb-16 | Differential Equation (Part A)", url: "https://youtu.be/AhDEdL8CzHY?si=pu51aXdZHps_eHU4" },
+                    { title: "Feb-16 | Differential Equation (Part B)", url: "https://youtu.be/9dDlJs6STNk?si=-ExjNFrnJPerfQSB" },
+                    { title: "Feb-17 | Homogeneous Differential Equations", url: "https://youtu.be/rLdftBJ_nSk?si=ptsTZZCYSXV__i9l" },
+                    { title: "Feb-18 | Homogeneous Differential Equations", url: "https://youtu.be/I7nncRRvWNw?si=ZV7jx5VPPZ3r-Rt0" },
+                    { title: "Feb-20 | Exact Differential Equations", url: "https://youtu.be/UF34QSbbF68?si=du3Qenic_EbHfhs8" },
+                    { title: "Feb-21 | Matrix | Linear Equation", url: "https://youtu.be/IYCpZUrdmzg?si=m5nCv0Fwzi2DsD_V" },
+                    { title: "Feb-22 | Matrix | Linear Equation", url: "https://youtu.be/EWP0Yry6bfw?si=-gAs5QB5A8U3Wc7z" },
+                    { title: "Feb-23 | Sequence and Series", url: "https://youtu.be/FelVzLfN_yk?si=LioXyN6ascYu8vLK" },
+                    { title: "Feb-27 | Mathematics Induction", url: "https://youtu.be/XW38BPrIU3Q?si=_MIi9z8ryngSu3yJ" },
+                    { title: "Feb-28 | Sequence and Series", url: "https://youtu.be/EkfxPtjcEP0?si=EctroQFZM4pwOgDA" },
+                    { title: "Mar-03 | Calculus", url: "https://youtu.be/CoBzHjEklXc?si=nVxmLffg-2Gq34vB" },
+                    { title: "Mar-04 | Binomial Theorem", url: "https://youtu.be/fGI8tgZrfQw?si=9VvkgfGyRQo-Ejtc" },
+                    { title: "Mar-05 | Binomial Theorem", url: "https://youtu.be/7XQeezeBXK0?si=YiMKGY-JyaoX_rez" },
+                    { title: "Mar-07 | Binomial Expansion", url: "https://youtu.be/MOOOBDSmzik?si=ZiUlUV565C3ODfBQ" },
+                    { title: "Mar-09 | Binomial Theorem", url: "https://youtu.be/leZ0U-LI_Bk?si=RhLPhDwpafBgoHkW" },
+                    { title: "Mar-10 | Binomial Theorem", url: "https://youtu.be/Wk-TB6zBC_w?si=_tnfePia-W4TehBN" },
+                    { title: "Mar-11 | Binomial Theorem", url: "https://youtu.be/JUdYhsN0ock?si=oW1heGEVJXPXFYbb" },
+                    { title: "Mar-17 | Binomial Theorem", url: "https://youtu.be/6W3o9-95KVU?si=AWlRBK3biQ8bcmlG" },
+                    { title: "Mar-20 | Binomial Theorem", url: "https://youtu.be/GIiLO5nSgz8?si=9bekzYONwQ9-gO41" },
+                    { title: "Mar-21 | Permutations & Combinations", url: "https://youtu.be/lj3pJB5qFso?si=5QZ1B42oz9YWUvbB" },
+                    { title: "Mar-23 | Permutations & Combinations (Part A)", url: "https://youtu.be/lwwq7qMSYNw?si=g3yvas6j33F41lbF" },
+                    { title: "Mar-23 | Permutations & Combinations (Part B)", url: "https://youtu.be/fUh1IuaTNG8?si=YUZbhNTihdQxLU90" },
+                    { title: "Mar-24 | Permutation and Combination", url: "https://youtu.be/f0ua9nRT78U?si=MxQoX0jpWm7szIw1" },
+                    { title: "Mar-26 | Integration", url: "https://youtu.be/vN-3NLC9oZc?si=EeEfRCsXKqOqRl8Z" },
+                    { title: "Mar-27 | General Math Session (Part A)", url: "https://youtu.be/_DhHXxy4N7k?si=oDONkYvxAe_hLuC4" },
+                    { title: "Mar-27 | General Math Session (Part B)", url: "https://youtu.be/asymrsm1WW8?si=rfgMNv1B7qc_8kg8" },
+                    { title: "Mar-28 | Conic Sections (Part A)", url: "https://youtu.be/NuIZ7cD7bdA?si=MJefgeUaFNaVpdYl" },
+                    { title: "Mar-28 | Conic Sections (Part B)", url: "https://youtu.be/2Kh4k-J35-I?si=YdrduUMVZyLiYFHd" },
+                    { title: "Mar-30 | Hyperbola", url: "https://youtu.be/-ZVLfBSfu48?si=OkXVdCmKTF8StbAp" },
+                    { title: "Mar-31 | Circle", url: "https://youtu.be/mzF3SZFXXPo?si=_MCff17XlDaj-4R7" },
+                    { title: "Apr-01 | Probability", url: "https://youtu.be/dwLJolTl_3g?si=VLwWSEPVYv-4xewX" },
+                    { title: "Apr-02 | Vector", url: "https://youtu.be/pzd4PKmxUvk?si=_8drS_BgfMkhAd0i" },
+                    { title: "Apr-03 | Circle", url: "https://youtu.be/OcrayIVQhDQ?si=iNpRiViLFEYhWH1o" },
+                    { title: "Apr-03 | System of linear Equation", url: "https://youtu.be/HpA1GE0aoJA?si=pR-VK_JbBq4C9jCl" },
+                    { title: "Apr-06 | System of Linear Equations", url: "https://youtu.be/mQCjqNnf6kk?si=S6eiQfdh_FkHfD7y" },
+                    { title: "Apr-07 | Linear Programming Problems", url: "https://youtu.be/lrrgccQf2eY?si=2deLlOAgHYHIJ3qv" },
+                    { title: "Apr-08 | Linear Programming Problems", url: "https://youtu.be/14h9EdDo9ew?si=lj7XiKciTRBA093J" },
+                    { title: "Apr-09 | Circle", url: "https://youtu.be/IPdRpbP-rL8?si=9BnyDEMoJHbFcx-w" },
+                    { title: "Apr-10 | Circle", url: "https://youtu.be/ajQTgRKj0aw?si=tpcLC83idRjoOuwm" },
+                    { title: "Apr-13 | Probability (Part A)", url: "https://youtu.be/GwdONnI9Ae4" },
+                    { title: "Apr-13 | Probability (Part B)", url: "https://youtu.be/fuZix0qQckM?si=vBgZPGSki7e8rZ3b" },
+                    { title: "Apr-15 | Circle", url: "https://youtu.be/0YkWxaaNo1E?si=6ssSGoE2bPy9Fxgv" },
+                    { title: "Apr-17 | Vector and Scalar", url: "https://youtu.be/rzBTDw-ZP7g?si=rLQ97rUlGUcFcSM5" }
+                ]
+            },
+            {
+                section: "2. Live Session (Sankalpa Group)",
+                type: "youtube",
+                items: [
+                    { title: "Feb-10 | Vector Scales", url: "https://youtu.be/mzIxvQXYgnQ?si=rmQh_Z3aEnQXBhk0" },
+                    { title: "Feb-11 | Application of Scale Product", url: "https://youtu.be/BZnYwZ9GVW4?si=UcVjn5ch26eoK_gT" },
+                    { title: "Feb-12 | Vector and Scaler", url: "https://youtu.be/wu3H4Vpc6RQ?si=MLUsxrg5-oYT1lYK" },
+                    { title: "Feb-13 | STATISTICS, CORRELATION", url: "https://youtu.be/rr3OMnV3r-k?si=EKmfUi0nNYir8Bre" },
+                    { title: "Feb-14 | Regression Equation", url: "https://youtu.be/TN2hP6VpB7s?si=6E8mXuQl8Db41_ze" },
+                    { title: "Feb-16 | Statistics ,Regression", url: "https://youtu.be/m1wOV7FJKpA?si=aEkgBV16iUMzheVA" },
+                    { title: "Feb-17 | Probability", url: "https://youtu.be/qGModio6rRg?si=4PtBrlVKYUpqeQLT" },
+                    { title: "Feb-18 | Simplex Method", url: "https://youtu.be/u8KeWhJrhrU?si=9xNN38jMXxz3iqmn" },
+                    { title: "Feb-19 | Matrix | System of Linear Equation", url: "https://youtu.be/yQZeTJ63_J0?si=aOrb2L9RyPwifXbC" },
+                    { title: "Feb-20 | Matrix", url: "https://youtu.be/gtNncV5kp38?si=T8jg32WiyP7aBumr" },
+                    { title: "Feb-21 | Sequence and Series", url: "https://youtu.be/6t9ELrz-Fr0?si=_jtB1gDtgdutzIaq" },
+                    { title: "Feb-23 | Mathematical Induction Method", url: "https://youtu.be/ElCaNA8ES50?si=gng84ZGLtl-kowXY" },
+                    { title: "Feb-24 | Complex Number", url: "https://youtu.be/C-Gmj_MDNrk?si=WDV1KitMED-WIcXo" },
+                    { title: "Feb-27 | Complex Number", url: "https://youtu.be/JdqF58egBac?si=gJoHopqC2KmV7GGg" },
+                    { title: "Feb-27 | Permutations and Combination", url: "https://youtu.be/vaJXghEDMRI?si=CEnwipuXArNuJ9W-" },
+                    { title: "Feb-28 | Permutations & Combination", url: "https://youtu.be/s1Z-utSgZ7c?si=2gGq_RDNZPdBZh8o" },
+                    { title: "Mar-03 | Permutations and Combination", url: "https://youtu.be/ghNKJ5Skc4A?si=GWXQMkyyHudcmkjD" },
+                    { title: "Mar-04 | Permutations and Combination (Part A)", url: "https://youtu.be/ErJ3OAzz0ls?si=YbPafatPDzyINcyI" },
+                    { title: "Mar-04 | Permutations and Combination (Part B)", url: "https://youtu.be/Hb9OI1V2hY4?si=I1gMm2LntjdeZjh7" },
+                    { title: "Mar-05 | Permutation and Combination", url: "https://youtu.be/N4aldUE-XVc?si=ZK3BmPmqkj5T4etB" },
+                    { title: "Mar-05 | Binomial Theorem", url: "https://youtu.be/egGgye7v8HY?si=dRyjki9ohPQzat-j" },
+                    { title: "Mar-06 | Binomial Theorem", url: "https://youtu.be/QWDN2J4OOMc?si=crgltUj3ZUBVJPWL" },
+                    { title: "Mar-07 | Binomial Theorem (Part A)", url: "https://youtu.be/SYxtsz3EDnE?si=uJRBXlEcbh6DhX8K" },
+                    { title: "Mar-07 | Binomial Theorem (Part B)", url: "https://youtu.be/_I0SyhkFQr0?si=px_EOHBBycvEmwSu" },
+                    { title: "Mar-09 | Binomial Theorem", url: "https://youtu.be/l36dnLU43dk?si=wsSuAiQy3z0dkHeg" },
+                    { title: "Mar-10 | Binomial Theorem", url: "https://youtu.be/g64tkpMCG18?si=TfZPCNeER-DttJXa" },
+                    { title: "Mar-11 | Logarithmic Function", url: "https://youtu.be/TNbMrlgQ-0k?si=TzwIZFQv7GeZaIYE" },
+                    { title: "Mar-11 | Binomial Theorem", url: "https://youtu.be/DiXF_n07V5s?si=GBjZksLiUz79Ahl4" },
+                    { title: "Mar-16 | Analytical Geometry", url: "https://youtu.be/cSybx4lOKGk?si=b2pXUiGzGnYPKwKX" },
+                    { title: "Mar-18 | Analytical Geometry | Circle (Part A)", url: "https://youtu.be/5Hh-pXfTOxo?si=X6G8D8TmcGDdHoVZ" },
+                    { title: "Mar-18 | Analytical Geometry | Circle (Part B)", url: "https://youtu.be/Ys0yr0-aUxA?si=PG1swj-oZ13TZtJb" },
+                    { title: "Mar-19 | Analytical Geometry | Circle", url: "https://youtu.be/hPWWjenHxCI?si=oh_ka4wnv6ngMySn" },
+                    { title: "Mar-19 | Parabola", url: "https://youtu.be/Bb2XJjsEtwc?si=38eAC6pc3gq4boxs" },
+                    { title: "Mar-20 | Analytical Geometry | Circle (Part A)", url: "https://youtu.be/fkqlEN_lwTw?si=FlgAGmW1N5YfF48T" },
+                    { title: "Mar-20 | Analytical Geometry | Circle (Part B)", url: "https://youtu.be/kFtBAdexczU?si=U9rAz3mu6R-vPJqj" },
+                    { title: "Mar-21 | Analytical Geometry | Circle (Part A)", url: "https://youtu.be/dX8GKIkXeGk?si=66Ruxks3LKEqOHH8" },
+                    { title: "Mar-21 | Analytical Geometry | Circle (Part B)", url: "https://youtu.be/6qcJbq87Kyw?si=3SYuqA30yDFY2sHL" },
+                    { title: "Mar-23 | Ellipse (Part A)", url: "https://youtu.be/8TpmeZGxw5Y?si=No-ytuMAn-406MQ0" },
+                    { title: "Mar-23 | Ellipse (Part B)", url: "https://youtu.be/i-6ZZc7v53A?si=0xurLy2l4wpqtxJL" },
+                    { title: "Mar-24 | Hyperbola", url: "https://youtu.be/o2iiWxrI93o?si=Y7WeBC0aVbOjhQAd" },
+                    { title: "Mar-25 | Trigonometry (Part A)", url: "https://youtu.be/62jBYs4Dqa8?si=40vJmH-SPVTBJnL1" },
+                    { title: "Mar-25 | Trigonometry (Part B)", url: "https://youtu.be/tWVLySQLo9Q?si=tw_bj0Yyy8g-r15i" },
+                    { title: "Mar-26 | Trigonometry", url: "https://youtu.be/sTgowfKpSUo?si=x4SLrfwuhpmMExf0" },
+                    { title: "Mar-27 | Trigonometry (Part A)", url: "https://youtu.be/u0orlZGbxd4?si=k4io0ykzOcakhDkH" },
+                    { title: "Mar-27 | Trigonometry (Part B)", url: "https://youtu.be/KJJNpm4grFE?si=ASiaB5k_riIbKqsU" },
+                    { title: "Mar-28 | Trigonometry (Part A)", url: "https://youtu.be/KNwuzLS_hNY?si=Aq6q2cc0y4GyE-ZG" },
+                    { title: "Mar-28 | Trigonometry (Part B)", url: "https://youtu.be/eXmrBUUs1so?si=Wkij4ZcQF5XC8M3o" },
+                    { title: "Mar-01 | Calculus | Derivatives", url: "https://youtu.be/8tJSRllA1pY?si=GcU352qu4wqHv5QV" },
+                    { title: "Apr-02 | Derivatives", url: "https://youtu.be/ZP4IKoesD6A?si=uTlyhi1obgQUDjlS" },
+                    { title: "Apr-03 | Derivatives", url: "https://youtu.be/1FKSw4Wjwbg?si=N18WR4jK8eIQLDQO" },
+                    { title: "Apr-04 | Tangent and Normal", url: "https://youtu.be/DIq_ynZx1aQ?si=AzJpOdikG9lPvruv" },
+                    { title: "Apr-06 | Tangent and Normal", url: "https://youtu.be/uIFCwieAIS4?si=nc0RbmBMYfzijek2" },
+                    { title: "Apr-07 | Rate Measure", url: "https://youtu.be/avr2GVdhNzE?si=h3yhZcHHNhb_ik76" },
+                    { title: "Apr-08 | Rate Measure", url: "https://youtu.be/2xLLc3H2VW0?si=SbwnwHci93lNlNpH" },
+                    { title: "Apr-09 | Rate Measure (Part A)", url: "https://youtu.be/matC2vjcsCk?si=6bNtvXTaQXfYU_Dq" },
+                    { title: "Apr-09 | Rate Measure (Part B)", url: "https://youtu.be/-qrZ4Hk6Oco?si=LHipZIOdf7Rh47-q" },
+                    { title: "Apr-13 | Anti-Derivatives (Part A)", url: "https://youtu.be/VvMJlc6-LlI" },
+                    { title: "Apr-13 | Anti-Derivatives (Part B)", url: "https://youtu.be/zqWzaPvHJHU?si=cQzkXXOTlq-jLwEj" },
+                    { title: "Apr-15 | Anti-Derivatives (Part A)", url: "https://youtu.be/ltNmUKdXo1E?si=8gTAnwBm5mqTiMwC" },
+                    { title: "Apr-15 | Anti-Derivatives (Part B)", url: "https://youtu.be/kaaGg3fF-Is?si=Kc9xCmg3RCLVosSa" },
+                    { title: "Apr-20 | Anti-Derivatives", url: "https://youtu.be/TKzd_36Hy_c?si=iVdvMLPaw95OUd4s" }
+                ]
+            },
+            {
+                section: "3. Derivatives Revision (Class 11)",
+                type: "youtube",
+                items: [
+                    { title: "Derivatives NEB Class-11 REVISION", url: "https://youtu.be/Nv8MQwFI4h0?si=5F9ozG6hRs8qIOKd" }
+                ]
+            },
+            {
+                section: "4. Conic Section (Mr. Bikash Sir)",
+                type: "youtube",
+                items: [
+                    { title: "Conic Sections | Ellipse | Lec-01", url: "https://youtu.be/gZTMTTtCn5c?si=4e5BZATdIYEXkBDR" },
+                    { title: "Conic Sections | Ellipse | Lec-02", url: "https://youtu.be/rDwWhJ0tjwk?si=un9JH7bXIlqDtpFR" },
+                    { title: "Conic Sections | Ellipse | Lec-03", url: "https://youtu.be/DMiSw7nrnCQ?si=3byGd2Vtr6kxDqvA" },
+                    { title: "Conic Sections | Ellipse | Lec-04", url: "https://youtu.be/oBYSfLhm5k8?si=FF8L0teZ5zLRIwi-" },
+                    { title: "Conic Sections | Hyperbola | Lec-01", url: "https://youtu.be/tF7EZNY_HeE?si=7cCYyCrwwaelMPLw" },
+                    { title: "Conic Sections | Parabola | Lec-01", url: "https://youtu.be/26pC07IwUUE?si=hEeacKtVS6vbBTBb" },
+                    { title: "Conic Sections | Parabola | Lec-02", url: "https://youtu.be/J-8hLSAIv5s?si=l0AdUlt4NnDzR5zO" },
+                    { title: "Conic Sections | Parabola | Lec-03", url: "https://youtu.be/yvnmBCoHZHY?si=xAEQPedcteOnPUXo" },
+                    { title: "Conic Sections | Parabola | Lec-04", url: "https://youtu.be/oCY7R5cxnTA?si=oEF9Mb1mLr-kqOB8" },
+                    { title: "Conic Sections | Parabola | Lec-05", url: "https://youtu.be/JRudBj6NvkU?si=DVEpR7cwuiU0B20E" },
+                    { title: "Conic Sections | Parabola | Lec-06", url: "https://youtu.be/QxgtqERHfxM?si=F_Ser4X6U5Kf9Qrc" },
+                    { title: "Conic Sections | Circle | Lec-01", url: "https://youtu.be/RZcyDelddBk?si=hkAIKLkS_gRHZk5v" },
+                    { title: "Conic Sections | Circle | Lec-02", url: "https://youtu.be/LZHV8hdPwno?si=v_tS-ozmCp-JgJDf" },
+                    { title: "Conic Sections | Circle | Lec-03", url: "https://youtu.be/dz4Lk5SQwxc?si=CHk4GkJoiQdmF92w" },
+                    { title: "Conic Sections | QAD | Lec-04", url: "https://youtu.be/BW5Eu66cJRY?si=7v3a16I561DcWBhT" }
+                ]
+            },
+            {
+                section: "5. NG Class Recordings (Archive)",
+                type: "youtube",
+                items: [
+                    { title: "Aug 05 | Statistics & Probability | Lec-01", url: "https://youtu.be/5aaJ7GsjiN4" },
+                    { title: "Aug 06 | Statistics & Probability | Lec-02", url: "https://youtu.be/YMNbB46x_VY" },
+                    { title: "Aug 07 | Statistics & Probability | Lec-03", url: "https://youtu.be/Hl__Gt6i1Tc" },
+                    { title: "Aug 08 | Statistics & Probability | Lec-04", url: "https://youtu.be/WGaIAK6KPZA" },
+                    { title: "Aug 10 | Statistics & Probability | Lec-05", url: "https://youtu.be/Vb9tE8PjU90" },
+                    { title: "Aug 11 | Linear Programming | Lec 02", url: "https://youtu.be/zF0oZmw2700" },
+                    { title: "Aug 12 | Simplex Method & Gauss | Lec 01", url: "https://youtu.be/612brTMbKOQ" },
+                    { title: "Aug 13 | Gauss Siedal & Linear Eq | Lec 01", url: "https://youtu.be/7bCzIs8GIS0" },
+                    { title: "Aug 14 | System of Linear Equation | Lec 01", url: "https://youtu.be/gOKP_nCIXgg" },
+                    { title: "Aug 15 | System of Linear Equation | Lec 02", url: "https://youtu.be/SJwOOAAXXqc" },
+                    { title: "Aug 16 | Complex Number | Lec 02", url: "https://youtu.be/xCWrRCcgftI" },
+                    { title: "Aug 17 | Vector & Complex Number | Lec 01", url: "https://youtu.be/cBXTHfExcXA" },
+                    { title: "Aug 18 | Vector | Lec 02", url: "https://youtu.be/P4Ue5jFx69w" },
+                    { title: "Aug 19 | Vectors & Sequence | Lec 01", url: "https://youtu.be/vNmBixJbsW8" },
+                    { title: "Aug 20 | Sequence & Series | Lec 01", url: "https://youtu.be/fz6QTUqcN7Y" },
+                    { title: "Aug 21 | Mathmatical Induction | Lec 02", url: "https://youtu.be/yt3uoObJPPU" },
+                    { title: "Aug 22 | Binomial Theorem | Lec 01", url: "https://youtu.be/PWpqrbwJx6w" },
+                    { title: "Aug 23 | Binomial Theorem | Lec 02", url: "https://youtu.be/RsYWfGUg5LA" },
+                    { title: "Aug 24 | Binomial Theorem | Lec 03", url: "https://youtu.be/77w5G0sD0N8" },
+                    { title: "Aug 26 | Exponential & Logarithmic | Lec 01", url: "https://youtu.be/Of1JCdt8t-k" },
+                    { title: "Aug 27 | Exponential & Logarithmic | Lec 02", url: "https://youtu.be/k3bWDu9p1_M" },
+                    { title: "Aug 28 | Permutations & Combination | Lec 02", url: "https://youtu.be/EvNMBAArSsI" },
+                    { title: "Aug 29 | Permutations & Combination | Lec 03", url: "https://youtu.be/iOJcmIzWDps" },
+                    { title: "Aug 30 | Circle | Lec 01", url: "https://youtu.be/JUKYdgsT3ak" },
+                    { title: "Aug 31 | Circle | Lec 02", url: "https://youtu.be/b-Px2GZl_IU" },
+                    { title: "Aug 31 | Derivative & Its Application", url: "https://youtu.be/EoNzu85l1c4" },
+                    { title: "Sep 02 | Circle & Parabola | Lec 01", url: "https://youtu.be/40m7fCXlmas" },
+                    { title: "Sep 03 | Parabola | Lec 02", url: "https://youtu.be/ovu0ZAtaomI" },
+                    { title: "Sep 04 | Parabola | Lec 03", url: "https://youtu.be/ARgndUlXJ7o" },
+                    { title: "Sep 05 | Ellipse & Hyperbola | Lec 01", url: "https://youtu.be/X30iRDy01gA" },
+                    { title: "Sep 06 | Ellipse & Hyperbola | Lec 02", url: "https://youtu.be/kWWxFIaw_Cc" },
+                    { title: "Sep 07 | Trigonometry | Lec 01", url: "https://youtu.be/oLppiJq6o3U" },
+                    { title: "Sep 08 | Trigonometry | Lec 02", url: "https://youtu.be/cCVrcnK_3Ns" },
+                    { title: "Sep 11 | Trigometry | Lec 03", url: "https://youtu.be/5Z70gI7frQA" },
+                    { title: "Sep 12 | Trigonometry | Lec 04", url: "https://youtu.be/CKAAnAObNxk" },
+                    { title: "Sep 13 | Trigonometry | Lec 05", url: "https://youtu.be/AJfK4AeOs-o" },
+                    { title: "Sep 14 | Antiderivative | Lec 01", url: "https://youtu.be/_JwOiOFLReU" },
+                    { title: "Sep 15 | Limit & Other Discussion", url: "https://youtu.be/cdUeSKaIVdI" },
+                    { title: "Sep 20 | Revision", url: "https://youtu.be/ObDdpem2Exo" },
+                    { title: "Sep 21 | Revision", url: "https://youtu.be/DqNU4j1eF3Y" },
+                    { title: "Sep 22 | Revision", url: "https://youtu.be/p0YK0ntM6Rc" }
+                ]
+            },
+            {
+                section: "6. Notes (Drive Links) 📜",
+                type: "drive",
+                items: [
+                    { title: "Basic Math Notes (Folder)", url: "https://drive.google.com/drive/folders/1SLuFAoVzW7_t-7cR06LsrDn_YXuYSTBx?usp=sharing" },
+                    { title: "Class 12 Solution Manual (PDF)", url: "https://drive.google.com/file/d/1QL_bJMNBfGS88mz8Q5MHS_UfQlJ7rsNq/view?usp=drive_link" },
+                    { title: "Math NG 2082 (Folder)", url: "https://drive.google.com/drive/folders/1Cy3IDnis7bGownGiZYU9MWrJYxbWyuCi?usp=drive_link" }
+                ]
+            },
+            {
+                section: "7. Group Link 📲",
+                type: "whatsapp",
+                items: [
+                    { title: "Join Whatsapp Group", url: "https://chat.whatsapp.com/ISQXMepQdHAA5xr9bqXk3v" }
+                ]
+            }
+        ];
+
+        const app = document.getElementById('app');
+        const searchInput = document.getElementById('searchInput');
+
+        function getTypeColor(type) {
+            if (type === 'youtube') return 'YouTube 📺';
+            if (type === 'drive') return 'Drive 📂';
+            if (type === 'whatsapp') return 'WhatsApp 💬';
+            return 'Link';
+        }
+
+        function render(filter = "") {
+            app.innerHTML = "";
+            const lowerFilter = filter.toLowerCase();
+
+            data.forEach(section => {
+                // Filter items based on search
+                const filteredItems = section.items.filter(item => 
+                    item.title.toLowerCase().includes(lowerFilter) || 
+                    section.section.toLowerCase().includes(lowerFilter)
+                );
+
+                if (filteredItems.length > 0) {
+                    // Create Section Header
+                    const sectionTitle = document.createElement('h2');
+                    sectionTitle.className = 'section-title';
+                    sectionTitle.innerText = section.section;
+                    app.appendChild(sectionTitle);
+
+                    // Create Grid
+                    const grid = document.createElement('div');
+                    grid.className = 'grid';
+
+                    filteredItems.forEach(item => {
+                        const card = document.createElement('a');
+                        card.href = item.url;
+                        card.target = "_blank";
+                        card.className = `card type-${section.type}`;
+                        
+                        card.innerHTML = `
+                            <div>
+                                <div class="card-title">${item.title}</div>
+                            </div>
+                            <div class="card-meta">
+                                <span>Click to Open ↗</span>
+                                <span class="badge">${getTypeColor(section.type)}</span>
+                            </div>
+                        `;
+                        grid.appendChild(card);
+                    });
+
+                    app.appendChild(grid);
+                }
+            });
+
+            if (app.innerHTML === "") {
+                app.innerHTML = `<div style="text-align:center; padding: 2rem; color: #94a3b8;">No results found for "${filter}"</div>`;
+            }
+        }
+
+        // Initial Render
+        render();
+
+        // Search Listener
+        searchInput.addEventListener('input', (e) => {
+            render(e.target.value);
+        });
+
+    </script>
+</body>
+</html>
